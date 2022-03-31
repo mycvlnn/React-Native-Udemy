@@ -18,11 +18,18 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     margin: 30,
+    flex: 1,
   },
   inputContainer: {
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "row",
+    alignItems: "center",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+    marginBottom: 10,
+    paddingBottom: 10,
+    flex: 1,
   },
   inputText: {
     width: "70%",
@@ -34,5 +41,6 @@ const styles = StyleSheet.create({
   },
   listGoals: {
     marginTop: 10,
+    flex: 5,
   },
 });
