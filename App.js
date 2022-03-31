@@ -4,8 +4,12 @@ import { StyleSheet, Text, View, Button } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello guys</Text>
-      <Text>Another Text</Text>
+      <Text style={styles.dummyText}>Hello guys</Text>
+      <Text
+        style={{ margin: 16, padding: 16, borderColor: "blue", borderWidth: 1 }}
+      >
+        Another Text
+      </Text>
       <Button title="Click me" />
       <StatusBar style="auto" />
     </View>
@@ -18,5 +22,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  dummyText: {
+    margin: 16,
+    padding: 16,
+    backgroundColor: "blue",
+    color: "white",
   },
 });
