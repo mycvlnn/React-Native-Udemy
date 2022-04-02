@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -6,12 +5,14 @@ import {
   View,
   Button,
   TextInput,
-  ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
   const [listGoals, setListGoals] = useState([]);
+
+  console.log("re-render");
 
   const goalInputHandler = (enteredText) => {
     console.log(enteredText);
@@ -19,19 +20,11 @@ export default function App() {
   };
 
   const addGoalSubmit = () => {
-    console.log("enteredGoal", enteredGoal);
-    const updatedListGoals = [...listGoals];
-    updatedListGoals.push(enteredGoal);
-    setListGoals(updatedListGoals);
-  };
-
-  const renderListGoals = () => {
-    return listGoals.map((goal, index) => {
-      return (
-        <View style={styles.goalItem} key={index}>
-          <Text style={styles.goalText}>{goal}</Text>
-        </View>
-      );
+    setListGoals((currentListGoals) => {
+      return [
+        ...currentListGoals,
+        { text: enteredGoal, id: Math.random().toString() },
+      ];
     });
   };
 
@@ -48,9 +41,21 @@ export default function App() {
       </View>
       <View style={styles.listGoals}>
         <Text>List of goals...</Text>
-        <ScrollView alwaysBounceVertical={false}>
-          {renderListGoals()}
-        </ScrollView>
+        <FlatList
+          data={listGoals}
+          alwaysBounceVertical={false}
+          renderItem={(itemData) => {
+            return (
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+            s;
+          }}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+        />
       </View>
     </View>
   );
