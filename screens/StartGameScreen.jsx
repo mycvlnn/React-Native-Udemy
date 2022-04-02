@@ -7,12 +7,14 @@ const StartGameScreen = () => {
       <TextInput
         style={styles.inputNumber}
         maxLength={2}
-        keyboardType="number-pad"
+        keyboardType="numeric"
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <ButtonPrimary>Reset</ButtonPrimary>
-      <ButtonPrimary>Confirm</ButtonPrimary>
+      <View style={styles.acitons}>
+        <ButtonPrimary>Reset</ButtonPrimary>
+        <ButtonPrimary>Confirm</ButtonPrimary>
+      </View>
     </View>
   );
 };
@@ -36,10 +38,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#ff9933",
     borderBottomColor: "#ff9933",
-    borderBottomWidth: 5,
+    borderBottomWidth: 4,
     width: 50,
     textAlign: "center",
     marginBottom: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginRight: "auto",
+    marginLeft: "auto"
+  },
+  acitons: {
+    flexDirection: "row"
   }
 });

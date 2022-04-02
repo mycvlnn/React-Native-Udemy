@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   btnOuterContainer: {
     overflow: "hidden",
     borderRadius: 28,
-    marginTop: 4
+    flex: 1,
+    marginHorizontal: 4
   },
   btnInnerContainer: {
     paddingVertical: 8,
