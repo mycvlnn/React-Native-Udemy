@@ -19,23 +19,20 @@ export default function App() {
   };
 
   const renderListGoals = () => {
-    return (
-      <View>
-        {listGoals.map((goal, index) => {
-          return (
-            <Text style={{ color: "red" }} key={index}>
-              {goal}
-            </Text>
-          );
-        })}
-      </View>
-    );
+    return listGoals.map((goal, index) => {
+      return (
+        <View style={styles.goalItem} key={index}>
+          <Text style={styles.goalText}>{goal}</Text>
+        </View>
+      );
+    });
   };
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <TextInput
+          value={enteredGoal}
           style={styles.inputText}
           placeholder="Your course goal !"
           onChangeText={goalInputHandler}
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
-    borderBottomColor: "#ccc",
+    borderBottomColor: "#cccccc",
     borderBottomWidth: 1,
     marginBottom: 10,
     paddingBottom: 10,
@@ -77,5 +74,14 @@ const styles = StyleSheet.create({
   listGoals: {
     marginTop: 10,
     flex: 5,
+  },
+  goalItem: {
+    backgroundColor: "purple",
+    borderRadius: 4,
+    marginTop: 4,
+    padding: 10,
+  },
+  goalText: {
+    color: "white",
   },
 });
