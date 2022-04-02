@@ -11,8 +11,10 @@ const StartGameScreen = () => {
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <ButtonPrimary>Reset</ButtonPrimary>
-      <ButtonPrimary>Confirm</ButtonPrimary>
+      <View style={styles.actions}>
+        <ButtonPrimary>Reset</ButtonPrimary>
+        <ButtonPrimary>Confirm</ButtonPrimary>
+      </View>
     </View>
   );
 };
@@ -40,6 +42,11 @@ const styles = StyleSheet.create({
     width: 50,
     textAlign: "center",
     marginBottom: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginRight: "auto",
+    marginLeft: "auto"
+  },
+  actions: {
+    flexDirection: "row"
   }
 });
