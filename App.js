@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import GoalInput from "./components/GoalInput";
 import GoalList from "./components/GoalList";
 
 export default function App() {
   const [listGoals, setListGoals] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const addGoalSubmit = (enteredGoal) => {
     setListGoals((currentListGoals) => {
@@ -15,6 +16,14 @@ export default function App() {
     });
   };
 
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+
   const deleteGoalHandler = (idGoal) => {
     setListGoals((currentListGoal) => {
       return currentListGoal.filter((goalItem) => goalItem.id !== idGoal);
@@ -23,7 +32,12 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAdd={addGoalSubmit} />
+      <Button title="New Goal" onPress={showModal} />
+      <GoalInput
+        onCloseModal={hideModal}
+        visible={modalVisible}
+        onAdd={addGoalSubmit}
+      />
       <GoalList listGoals={listGoals} onDelete={deleteGoalHandler} />
     </View>
   );

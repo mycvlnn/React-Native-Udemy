@@ -1,7 +1,7 @@
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, Button, StyleSheet, Modal } from "react-native";
 import { useState } from "react";
 
-const GoalInput = ({ onAdd }) => {
+const GoalInput = ({ onAdd, visible, onCloseModal }) => {
   const [enteredGoal, setEnteredGoal] = useState("");
 
   const goalInputHandler = (enteredText) => {
@@ -9,19 +9,28 @@ const GoalInput = ({ onAdd }) => {
   };
 
   const addGoalHandler = () => {
+    setEnteredGoal("");
     onAdd(enteredGoal);
+    onCloseModal();
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        value={enteredGoal}
-        style={styles.inputText}
-        placeholder="Your course goal !"
-        onChangeText={goalInputHandler}
-      />
-      <Button title="Add Goal" onPress={addGoalHandler} />
-    </View>
+    <Modal visible={visible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={enteredGoal}
+          style={styles.inputText}
+          placeholder="Your course goal !"
+          onChangeText={goalInputHandler}
+        />
+        <View style={styles.actions}>
+          <View style={styles.button}>
+            <Button title="Add Goal" onPress={addGoalHandler} />
+          </View>
+          <Button title="Cancel" onPress={onCloseModal} />
+        </View>
+      </View>
+    </Modal>
   );
 };
 
@@ -29,9 +38,7 @@ export default GoalInput;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
     borderBottomColor: "#cccccc",
     borderBottomWidth: 1,
@@ -40,11 +47,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
   inputText: {
-    width: "70%",
+    width: "90%",
     borderColor: "blue",
     borderWidth: 1,
-    marginRight: 10,
     borderRadius: 4,
     padding: 8
+  },
+  actions: {
+    flexDirection: "row",
+    marginTop: 16,
+    justifyContent: "space-around"
+  },
+  button: {
+    marginRight: 10
   }
 });
