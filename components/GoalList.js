@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import GoalItem from "./GoalItem";
 
 const GoalList = (props) => {
-  const { listGoals } = props;
+  const { listGoals, onDelete } = props;
 
   return (
     <View style={styles.listGoals}>
@@ -11,7 +11,12 @@ const GoalList = (props) => {
         data={listGoals}
         alwaysBounceVertical={false}
         renderItem={(itemData) => {
-          return <GoalItem value={itemData.item.text} />;
+          return (
+            <GoalItem
+              value={itemData.item.text}
+              onDelete={() => onDelete(itemData.item.id)}
+            />
+          );
         }}
         keyExtractor={(item) => {
           return item.id;

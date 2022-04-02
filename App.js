@@ -15,10 +15,16 @@ export default function App() {
     });
   };
 
+  const deleteGoalHandler = (idGoal) => {
+    setListGoals((currentListGoal) => {
+      return currentListGoal.filter((goalItem) => goalItem.id !== idGoal);
+    });
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAdd={addGoalSubmit} />
-      <GoalList listGoals={listGoals} />
+      <GoalList listGoals={listGoals} onDelete={deleteGoalHandler} />
     </View>
   );
 }
