@@ -4,6 +4,9 @@ import { Text, View, StyleSheet, Alert } from "react-native";
 import ButtonPrimary from "../components/Button/ButtonPrimary";
 import NumberContainer from "../components/game/NumberContainer";
 import Title from "../components/Title";
+import Card from "../components/UI/Card";
+import InstructionText from "../components/UI/InstructionText";
+import Colors from "../constants/colors";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -65,17 +68,19 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text style={styles.text}>Higher or lower ?</Text>
-      </View>
-      <View style={styles.actions}>
-        <ButtonPrimary onClick={nextGuessHandler.bind(this, "lower")}>
-          -
-        </ButtonPrimary>
-        <ButtonPrimary onClick={nextGuessHandler.bind(this, "greater")}>
-          +
-        </ButtonPrimary>
-      </View>
+      <Card>
+        <View>
+          <InstructionText>Higher or Lower</InstructionText>
+        </View>
+        <View style={styles.actions}>
+          <ButtonPrimary onClick={nextGuessHandler.bind(this, "lower")}>
+            -
+          </ButtonPrimary>
+          <ButtonPrimary onClick={nextGuessHandler.bind(this, "greater")}>
+            +
+          </ButtonPrimary>
+        </View>
+      </Card>
     </View>
   );
 };
@@ -85,12 +90,6 @@ export default GameScreen;
 const styles = StyleSheet.create({
   screen: {
     margin: 36
-  },
-  text: {
-    color: "white",
-    fontSize: 30,
-    textAlign: "center",
-    marginBottom: 10
   },
   actions: {
     flexDirection: "row"

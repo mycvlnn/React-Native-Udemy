@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   title: {
     borderColor: "white",
     borderWidth: 3,
-    padding: 6,
+    padding: 8,
     color: "white",
     textAlign: "center",
     fontSize: 18,
