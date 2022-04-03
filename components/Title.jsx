@@ -7,10 +7,10 @@ export default function Title({ children }) {
 
 const styles = StyleSheet.create({
   title: {
-    borderColor: Colors.accent500,
+    borderColor: "white",
     borderWidth: 3,
     padding: 6,
-    color: Colors.accent500,
+    color: "white",
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
