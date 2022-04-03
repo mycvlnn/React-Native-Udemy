@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
@@ -30,6 +31,7 @@ export default function App() {
         resizeMode="repeat"
         imageStyle={styles.background}
       >
+        <StatusBar style="light" />
         <SafeAreaView>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
