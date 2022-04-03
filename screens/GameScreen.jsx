@@ -67,7 +67,9 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
-      <NumberContainer>{currentGuess}</NumberContainer>
+      <NumberContainer style={styles.numberGuess}>
+        {currentGuess}
+      </NumberContainer>
       <Card>
         <View>
           <InstructionText>Higher or Lower</InstructionText>
@@ -90,6 +92,10 @@ export default GameScreen;
 const styles = StyleSheet.create({
   screen: {
     margin: 36
+  },
+  numberGuess: {
+    marginTop: 40,
+    padding: 40
   },
   actions: {
     flexDirection: "row"
