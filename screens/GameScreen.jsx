@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import ButtonPrimary from "../components/Button/ButtonPrimary";
 import NumberContainer from "../components/game/NumberContainer";
 import Title from "../components/Title";
 import Card from "../components/UI/Card";
 import InstructionText from "../components/UI/InstructionText";
-import Colors from "../constants/colors";
+import { AntDesign } from "@expo/vector-icons";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -76,10 +76,10 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
         </View>
         <View style={styles.actions}>
           <ButtonPrimary onClick={nextGuessHandler.bind(this, "lower")}>
-            -
+            <AntDesign name="minus" size={24} color="white" />
           </ButtonPrimary>
           <ButtonPrimary onClick={nextGuessHandler.bind(this, "greater")}>
-            +
+            <AntDesign name="plus" size={24} color="white" />
           </ButtonPrimary>
         </View>
       </Card>
