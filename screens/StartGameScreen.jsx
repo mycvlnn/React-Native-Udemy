@@ -1,41 +1,42 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { View, TextInput, StyleSheet, Alert } from "react-native";
-import ButtonPrimary from "../components/Button/ButtonPrimary";
-import Title from "../components/Title";
-import Card from "../components/UI/Card";
-import InstructionText from "../components/UI/InstructionText";
-import Colors from "../constants/colors";
+import { View, TextInput, StyleSheet, Alert } from 'react-native'
+import ButtonPrimary from '../components/Button/ButtonPrimary'
+import Title from '../components/Title'
+import Card from '../components/UI/Card'
+import InstructionText from '../components/UI/InstructionText'
+import Colors from '../constants/colors'
+import { fontFamily } from '../constants/fonts'
 
 const StartGameScreen = ({ onPickNumber }) => {
-  const [enteredNumber, setEnteredNumber] = useState("");
+  const [enteredNumber, setEnteredNumber] = useState('')
 
   const inputNumberHandler = (enteredValue) => {
-    setEnteredNumber(enteredValue);
-  };
+    setEnteredNumber(enteredValue)
+  }
 
   const resetInputNumber = () => {
-    setEnteredNumber("");
-  };
+    setEnteredNumber('')
+  }
 
   const confirmInputHandler = () => {
-    const chosenNumber = parseInt(enteredNumber);
+    const chosenNumber = parseInt(enteredNumber)
 
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       Alert.alert(
-        "Invalid number!",
-        "Number has to be a number between 1 and 99.",
+        'Invalid number!',
+        'Number has to be a number between 1 and 99.',
         [
           {
-            text: "Okay",
-            style: "destructive",
+            text: 'Okay',
+            style: 'destructive',
             onPress: resetInputNumber
           }
         ]
-      );
+      )
     }
-    onPickNumber(chosenNumber);
-  };
+    onPickNumber(chosenNumber)
+  }
 
   return (
     <View style={styles.rootContainer}>
@@ -60,17 +61,17 @@ const StartGameScreen = ({ onPickNumber }) => {
         </View>
       </Card>
     </View>
-  );
-};
+  )
+}
 
-export default StartGameScreen;
+export default StartGameScreen
 
 const styles = StyleSheet.create({
   rootContainer: {
     marginTop: 100
   },
   title: {
-    alignItems: "center"
+    alignItems: 'center'
   },
   inputNumber: {
     fontSize: 20,
@@ -78,13 +79,13 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.accent500,
     borderBottomWidth: 3,
     width: 50,
-    textAlign: "center",
+    textAlign: 'center',
     marginBottom: 16,
-    fontWeight: "bold",
-    marginRight: "auto",
-    marginLeft: "auto"
+    fontFamily: fontFamily.open_sans_bold,
+    marginRight: 'auto',
+    marginLeft: 'auto'
   },
   actions: {
-    flexDirection: "row"
+    flexDirection: 'row'
   }
-});
+})

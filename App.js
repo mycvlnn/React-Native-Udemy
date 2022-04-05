@@ -1,34 +1,44 @@
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
 
-import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
-import StartGameScreen from "./screens/StartGameScreen";
-import { LinearGradient } from "expo-linear-gradient";
-import imageBackground from "./assets/background.jpg";
-import GameScreen from "./screens/GameScreen";
-import Colors from "./constants/colors";
-import GameOverScreen from "./screens/GameOverScreen";
+import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native'
+import { useFonts } from 'expo-font'
+import AppLoading from 'expo-app-loading'
+import StartGameScreen from './screens/StartGameScreen'
+import { LinearGradient } from 'expo-linear-gradient'
+import imageBackground from './assets/background.jpg'
+import GameScreen from './screens/GameScreen'
+import Colors from './constants/colors'
+import GameOverScreen from './screens/GameOverScreen'
 
 export default function App() {
-  const [pickedNumber, setPickedNumber] = useState("");
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [pickedNumber, setPickedNumber] = useState('')
+  const [isGameOver, setIsGameOver] = useState(false)
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
 
   const pickedNumberHandler = (pickedNumber) => {
-    setPickedNumber(pickedNumber);
-  };
+    setPickedNumber(pickedNumber)
+  }
 
   const onGameOver = () => {
-    setIsGameOver(true);
-  };
+    setIsGameOver(true)
+  }
 
-  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
 
   if (pickedNumber) {
-    screen = <GameScreen chosenNumber={pickedNumber} onGameOver={onGameOver} />;
+    screen = <GameScreen chosenNumber={pickedNumber} onGameOver={onGameOver} />
   }
 
   if (isGameOver && pickedNumber) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen />
   }
 
   return (
@@ -46,7 +56,7 @@ export default function App() {
         <SafeAreaView>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -56,4 +66,4 @@ const styles = StyleSheet.create({
   background: {
     opacity: 0.2
   }
-});
+})

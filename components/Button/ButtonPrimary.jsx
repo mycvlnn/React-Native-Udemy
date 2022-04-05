@@ -1,5 +1,6 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../../constants/colors";
+import { View, Text, Pressable, StyleSheet } from 'react-native'
+import Colors from '../../constants/colors'
+import { fontFamily } from '../../constants/fonts'
 
 const ButtonPrimary = ({ children, onClick }) => {
   return (
@@ -18,14 +19,14 @@ const ButtonPrimary = ({ children, onClick }) => {
         </Text>
       </Pressable>
     </View>
-  );
-};
+  )
+}
 
-export default ButtonPrimary;
+export default ButtonPrimary
 
 const styles = StyleSheet.create({
   btnOuterContainer: {
-    overflow: "hidden",
+    overflow: 'hidden',
     borderRadius: 28,
     flex: 1,
     marginHorizontal: 4
@@ -37,12 +38,13 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   btnText: {
-    textAlign: "center",
-    color: "white",
+    textAlign: 'center',
+    color: 'white',
     fontSize: 13,
-    fontWeight: "500"
+    fontWeight: '500',
+    fontFamily: fontFamily.open_sans_bold
   },
   pressed: {
     opacity: 0.8
   }
-});
+})
