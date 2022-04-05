@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 3,
     padding: 8,
+    paddingHorizontal: 20,
     color: 'white',
     textAlign: 'center',
     fontSize: 18,
