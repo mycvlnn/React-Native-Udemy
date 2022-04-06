@@ -30,8 +30,9 @@ export default function App() {
     setPickedNumber(pickedNumber)
   }
 
-  const onGameOver = () => {
+  const onGameOver = (numberRounds) => {
     setIsGameOver(true)
+    setRoundsNumber(numberRounds)
   }
 
   const onStartNewGame = () => {

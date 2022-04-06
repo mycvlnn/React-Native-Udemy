@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     borderRadius: 28
   },
   btnInnerContainer: {
-    paddingVertical: 16,
-    paddingHorizontal: 25,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
     backgroundColor: Colors.primary500,
     elevation: 4
   },

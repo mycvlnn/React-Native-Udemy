@@ -17,10 +17,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     padding: 20,
-    margin: 30
+    margin: 20,
+    backgroundColor: Colors.primary800
   },
   numberText: {
-    fontSize: 36,
+    fontSize: 30,
     fontFamily: fontFamily.open_sans_bold,
     color: Colors.accent500
   }

@@ -1,12 +1,13 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
-import { View, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert, FlatList } from 'react-native'
 import ButtonPrimary from '../components/Button/ButtonPrimary'
 import NumberContainer from '../components/game/NumberContainer'
 import Title from '../components/Title'
 import Card from '../components/UI/Card'
 import InstructionText from '../components/UI/InstructionText'
 import { AntDesign } from '@expo/vector-icons'
+import RoundItem from '../components/game/RoundItem'
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min
@@ -22,9 +23,9 @@ let minBoundary = 1
 
 const GameScreen = ({ chosenNumber, onGameOver }) => {
   const initialGuess = generateRandomBetween(1, 100, chosenNumber)
-  console.log('initGuess', initialGuess)
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
+  const [listRoundsGuess, setListRoundsGuess] = useState([])
 
   const nextGuessHandler = (direction) => {
     //direction => 'lower', 'greater'
@@ -55,9 +56,10 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
     )
 
     setCurrentGuess(newGuess)
+    setListRoundsGuess((prevRoundsGuess) => [newGuess, ...prevRoundsGuess])
   }
 
-  console.log('currentGuess', currentGuess)
+  const lengthRound = listRoundsGuess.length
 
   useEffect(() => {
     minBoundary = 1
@@ -66,8 +68,7 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
 
   useEffect(() => {
     if (currentGuess === chosenNumber) {
-      console.log('Testing')
-      onGameOver()
+      onGameOver(lengthRound)
     }
   }, [currentGuess, chosenNumber, onGameOver])
 
@@ -84,16 +85,28 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
         <View style={styles.actions}>
           <View style={styles.btn}>
             <ButtonPrimary onClick={nextGuessHandler.bind(this, 'lower')}>
-              <AntDesign name="minus" size={24} color="white" />
+              <AntDesign name="minus" size={16} color="white" />
             </ButtonPrimary>
           </View>
           <View style={styles.btn}>
             <ButtonPrimary onClick={nextGuessHandler.bind(this, 'greater')}>
-              <AntDesign name="plus" size={24} color="white" />
+              <AntDesign name="plus" size={16} color="white" />
             </ButtonPrimary>
           </View>
         </View>
       </Card>
+      <View style={styles.roundsContainer}>
+        {/* {listRoundsGuess.map((guess) => {
+          return <RoundItem key={guess} guess={guess} />
+        })} */}
+        <FlatList
+          data={listRoundsGuess}
+          renderItem={({ item, index }) => (
+            <RoundItem round={lengthRound - index} guess={item} />
+          )}
+          keyExtractor={(item) => item}
+        />
+      </View>
     </View>
   )
 }
@@ -102,11 +115,12 @@ export default GameScreen
 
 const styles = StyleSheet.create({
   screen: {
-    margin: 36
+    margin: 36,
+    flex: 1
   },
   numberGuess: {
     marginTop: 40,
-    padding: 40
+    padding: 15
   },
   actions: {
     flexDirection: 'row'
@@ -114,5 +128,9 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     margin: 4
+  },
+  roundsContainer: {
+    flex: 1,
+    padding: 16
   }
 })
