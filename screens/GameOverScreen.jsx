@@ -9,7 +9,7 @@ const Highlighter = ({ children }) => {
   return <Text style={styles.textHighlight}>{children}</Text>
 }
 
-const GameOverScreen = () => {
+const GameOverScreen = ({ roundsNumber, userNumber, onStartNewGame }) => {
   return (
     <View style={styles.rootContainer}>
       <Title>GAME OVER</Title>
@@ -17,13 +17,11 @@ const GameOverScreen = () => {
         <Image style={styles.image} source={require('../assets/success.png')} />
       </View>
       <Text style={styles.summaryText}>
-        Your phone needed <Highlighter>X</Highlighter> rounds to guess the
-        number <Highlighter>Y</Highlighter>
+        Your phone needed <Highlighter>{roundsNumber}</Highlighter> rounds to
+        guess the number <Highlighter>{userNumber}</Highlighter>
       </Text>
       <View>
-        <ButtonPrimary onClick={() => alert('hello')}>
-          Start New Game
-        </ButtonPrimary>
+        <ButtonPrimary onClick={onStartNewGame}>Start New Game</ButtonPrimary>
       </View>
     </View>
   )

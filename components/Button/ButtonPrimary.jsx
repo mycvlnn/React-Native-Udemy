@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
   },
   btnInnerContainer: {
     paddingVertical: 16,
-    paddingHorizontal: 30,
+    paddingHorizontal: 25,
     backgroundColor: Colors.primary500,
     elevation: 4
   },
   btnText: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '500',
     fontFamily: fontFamily.open_sans_bold
   },

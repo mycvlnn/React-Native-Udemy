@@ -21,9 +21,8 @@ let maxBoundary = 100
 let minBoundary = 1
 
 const GameScreen = ({ chosenNumber, onGameOver }) => {
-  const initialGuess = useMemo(() => {
-    return generateRandomBetween(minBoundary, maxBoundary, chosenNumber)
-  }, [])
+  const initialGuess = generateRandomBetween(1, 100, chosenNumber)
+  console.log('initGuess', initialGuess)
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
@@ -58,8 +57,16 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
     setCurrentGuess(newGuess)
   }
 
+  console.log('currentGuess', currentGuess)
+
+  useEffect(() => {
+    minBoundary = 1
+    maxBoundary = 100
+  }, [])
+
   useEffect(() => {
     if (currentGuess === chosenNumber) {
+      console.log('Testing')
       onGameOver()
     }
   }, [currentGuess, chosenNumber, onGameOver])
