@@ -27,20 +27,18 @@ export default ButtonPrimary
 const styles = StyleSheet.create({
   btnOuterContainer: {
     overflow: 'hidden',
-    borderRadius: 28,
-    flex: 1,
-    marginHorizontal: 4
+    borderRadius: 28
   },
   btnInnerContainer: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 30,
     backgroundColor: Colors.primary500,
     elevation: 4
   },
   btnText: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 13,
+    fontSize: 16,
     fontWeight: '500',
     fontFamily: fontFamily.open_sans_bold
   },

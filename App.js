@@ -53,7 +53,7 @@ export default function App() {
         imageStyle={styles.background}
       >
         <StatusBar style="light" />
-        <SafeAreaView>{screen}</SafeAreaView>
+        {screen}
       </ImageBackground>
     </LinearGradient>
   )

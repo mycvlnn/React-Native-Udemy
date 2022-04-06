@@ -56,8 +56,12 @@ const StartGameScreen = ({ onPickNumber }) => {
         />
 
         <View style={styles.actions}>
-          <ButtonPrimary onClick={resetInputNumber}>Reset</ButtonPrimary>
-          <ButtonPrimary onClick={confirmInputHandler}>Confirm</ButtonPrimary>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={resetInputNumber}>Reset</ButtonPrimary>
+          </View>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={confirmInputHandler}>Confirm</ButtonPrimary>
+          </View>
         </View>
       </Card>
     </View>
@@ -86,6 +90,11 @@ const styles = StyleSheet.create({
     marginLeft: 'auto'
   },
   actions: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  btn: {
+    flex: 1,
+    margin: 4
   }
 })

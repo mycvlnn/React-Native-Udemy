@@ -3,6 +3,7 @@ import React from 'react'
 import Title from '../components/Title'
 import Colors from '../constants/colors'
 import { fontFamily } from '../constants/fonts'
+import ButtonPrimary from '../components/Button/ButtonPrimary'
 
 const Highlighter = ({ children }) => {
   return <Text style={styles.textHighlight}>{children}</Text>
@@ -19,6 +20,11 @@ const GameOverScreen = () => {
         Your phone needed <Highlighter>X</Highlighter> rounds to guess the
         number <Highlighter>Y</Highlighter>
       </Text>
+      <View>
+        <ButtonPrimary onClick={() => alert('hello')}>
+          Start New Game
+        </ButtonPrimary>
+      </View>
     </View>
   )
 }
@@ -30,11 +36,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    marginTop: '10%'
+    marginTop: '10%',
+    flex: 1
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 150,
     overflow: 'hidden',
     borderWidth: 4,
@@ -50,7 +57,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.primary800,
     textShadowColor: Colors.accent500,
-    fontFamily: fontFamily.open_sans
+    fontFamily: fontFamily.open_sans,
+    marginBottom: 16
   },
   textHighlight: {
     fontWeight: 'bold',

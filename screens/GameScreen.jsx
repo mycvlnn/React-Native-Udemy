@@ -75,12 +75,16 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
           <InstructionText>Higher or Lower</InstructionText>
         </View>
         <View style={styles.actions}>
-          <ButtonPrimary onClick={nextGuessHandler.bind(this, 'lower')}>
-            <AntDesign name="minus" size={24} color="white" />
-          </ButtonPrimary>
-          <ButtonPrimary onClick={nextGuessHandler.bind(this, 'greater')}>
-            <AntDesign name="plus" size={24} color="white" />
-          </ButtonPrimary>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={nextGuessHandler.bind(this, 'lower')}>
+              <AntDesign name="minus" size={24} color="white" />
+            </ButtonPrimary>
+          </View>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={nextGuessHandler.bind(this, 'greater')}>
+              <AntDesign name="plus" size={24} color="white" />
+            </ButtonPrimary>
+          </View>
         </View>
       </Card>
     </View>
@@ -99,5 +103,9 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row'
+  },
+  btn: {
+    flex: 1,
+    margin: 4
   }
 })
