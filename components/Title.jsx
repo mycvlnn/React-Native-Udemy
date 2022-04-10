@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     borderRadius: 4,
-    fontFamily: fontFamily.open_sans_bold
+    fontFamily: fontFamily.open_sans_bold,
+    maxWidth: '80%',
+    width: 300
   }
 })

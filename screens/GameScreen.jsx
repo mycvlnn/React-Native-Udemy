@@ -11,6 +11,7 @@ import RoundItem from '../components/game/RoundItem'
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min
+
   if (rndNum === exclude) {
     return generateRandomBetween(min, max, exclude)
   } else {
@@ -96,9 +97,6 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
         </View>
       </Card>
       <View style={styles.roundsContainer}>
-        {/* {listRoundsGuess.map((guess) => {
-          return <RoundItem key={guess} guess={guess} />
-        })} */}
         <FlatList
           data={listRoundsGuess}
           renderItem={({ item, index }) => (
