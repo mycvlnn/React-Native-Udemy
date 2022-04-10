@@ -1,8 +1,11 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Dimensions } from 'react-native'
 import Colors from '../../constants/colors'
 import { fontFamily } from '../../constants/fonts'
 
+const deviceWidth = Dimensions.get('window').width
+
 const ButtonPrimary = ({ children, onClick }) => {
+  console.log('deviceWidth', deviceWidth)
   return (
     <View style={styles.btnOuterContainer}>
       <Pressable
@@ -30,15 +33,14 @@ const styles = StyleSheet.create({
     borderRadius: 28
   },
   btnInnerContainer: {
-    paddingVertical: 14,
-    paddingHorizontal: 24,
+    paddingVertical: 10,
     backgroundColor: Colors.primary500,
     elevation: 4
   },
   btnText: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 15,
+    fontSize: deviceWidth <= 360 ? 12 : 15,
     fontWeight: '500',
     fontFamily: fontFamily.open_sans_bold
   },
