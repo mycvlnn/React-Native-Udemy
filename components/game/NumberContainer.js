@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
     borderColor: Colors.accent500,
     borderRadius: 8,
     alignItems: 'center',
-    padding: 20,
     margin: 20,
-    backgroundColor: Colors.primary800
+    backgroundColor: Colors.primary800,
+    minWidth: 200
   },
   numberText: {
     fontSize: 30,

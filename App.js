@@ -20,8 +20,6 @@ export default function App() {
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   })
 
-  console.log('pickedNumber', pickedNumber)
-
   if (!fontsLoaded) {
     return <AppLoading />
   }

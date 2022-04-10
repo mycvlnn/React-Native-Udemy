@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { View, StyleSheet, Alert, FlatList } from 'react-native'
+import { View, StyleSheet, Alert, FlatList, Dimensions } from 'react-native'
 import ButtonPrimary from '../components/Button/ButtonPrimary'
 import NumberContainer from '../components/game/NumberContainer'
 import Title from '../components/Title'
@@ -21,6 +21,7 @@ function generateRandomBetween(min, max, exclude) {
 
 let maxBoundary = 100
 let minBoundary = 1
+const deviceWidth = Dimensions.get('window').width
 
 const GameScreen = ({ chosenNumber, onGameOver }) => {
   const initialGuess = generateRandomBetween(1, 100, chosenNumber)
@@ -113,12 +114,13 @@ export default GameScreen
 
 const styles = StyleSheet.create({
   screen: {
-    margin: 36,
-    flex: 1
+    marginTop: deviceWidth < 380 ? 32 : 40,
+    flex: 1,
+    alignItems: 'center'
   },
   numberGuess: {
     marginTop: 40,
-    padding: 15
+    padding: 30
   },
   actions: {
     flexDirection: 'row'
