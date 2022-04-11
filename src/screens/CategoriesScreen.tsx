@@ -9,8 +9,8 @@ import { RootStackParamList } from '../constants/type'
 type Props = NativeStackScreenProps<RootStackParamList, 'Categories'>
 
 const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
-  const navigateHandler = () => {
-    navigation.navigate('Meals')
+  const navigateHandler = (categoryId: string) => {
+    navigation.navigate('Meals', { categoryId })
   }
 
   return (
@@ -21,7 +21,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
         numColumns={2}
         renderItem={({ item }) => (
           <CategoryGridTile
-            onPress={navigateHandler}
+            onPress={navigateHandler.bind(this, item.id)}
             text={item.title}
             color={item.color}
           />
