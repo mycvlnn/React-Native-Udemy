@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 
-import { View, StyleSheet, Alert, FlatList, Dimensions } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Alert,
+  FlatList,
+  Dimensions,
+  useWindowDimensions
+} from 'react-native'
 import ButtonPrimary from '../components/Button/ButtonPrimary'
 import NumberContainer from '../components/game/NumberContainer'
 import Title from '../components/Title'
@@ -28,6 +35,7 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
   const [listRoundsGuess, setListRoundsGuess] = useState([])
+  const { width, height } = useWindowDimensions()
 
   const nextGuessHandler = (direction) => {
     //direction => 'lower', 'greater'
@@ -74,8 +82,8 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
     }
   }, [currentGuess, chosenNumber, onGameOver])
 
-  return (
-    <View style={styles.screen}>
+  let content = (
+    <>
       <Title>Opponent's Guess</Title>
       <NumberContainer style={styles.numberGuess}>
         {currentGuess}
@@ -97,6 +105,35 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
           </View>
         </View>
       </Card>
+    </>
+  )
+
+  if (width > 500) {
+    content = (
+      <>
+        <Title>Opponent's Guess</Title>
+        <View style={styles.actions}>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={nextGuessHandler.bind(this, 'lower')}>
+              <AntDesign name="minus" size={16} color="white" />
+            </ButtonPrimary>
+          </View>
+          <NumberContainer style={styles.numberGuess}>
+            {currentGuess}
+          </NumberContainer>
+          <View style={styles.btn}>
+            <ButtonPrimary onClick={nextGuessHandler.bind(this, 'greater')}>
+              <AntDesign name="plus" size={16} color="white" />
+            </ButtonPrimary>
+          </View>
+        </View>
+      </>
+    )
+  }
+
+  return (
+    <View style={styles.screen}>
+      {content}
       <View style={styles.roundsContainer}>
         <FlatList
           data={listRoundsGuess}
@@ -119,11 +156,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   numberGuess: {
-    marginTop: 40,
     padding: 30
   },
   actions: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   btn: {
     flex: 1,

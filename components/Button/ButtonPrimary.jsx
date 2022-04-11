@@ -5,7 +5,6 @@ import { fontFamily } from '../../constants/fonts'
 const deviceWidth = Dimensions.get('window').width
 
 const ButtonPrimary = ({ children, onClick }) => {
-  console.log('deviceWidth', deviceWidth)
   return (
     <View style={styles.btnOuterContainer}>
       <Pressable
@@ -34,6 +33,7 @@ const styles = StyleSheet.create({
   },
   btnInnerContainer: {
     paddingVertical: 10,
+    paddingHorizontal: 20,
     backgroundColor: Colors.primary500,
     elevation: 4
   },
