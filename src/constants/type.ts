@@ -6,4 +6,7 @@ export type RootStackParamList = {
   Meals: {
     categoryId: string
   }
+  MealDetail: {
+    mealId: string
+  }
 }

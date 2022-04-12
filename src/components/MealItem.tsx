@@ -1,5 +1,9 @@
 import { View, StyleSheet, Text, Image } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import Card from './UI/Card'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../constants/type'
+import MealDetails from './MealDetails'
 
 interface MealItemProps {
   imageUrl: string
@@ -7,6 +11,7 @@ interface MealItemProps {
   duration: number
   complexity: string
   affordability: string
+  id: string
 }
 
 const MealItem: React.FC<MealItemProps> = ({
@@ -14,19 +19,29 @@ const MealItem: React.FC<MealItemProps> = ({
   title,
   duration,
   complexity,
-  affordability
+  affordability,
+  id
 }) => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
+  const detailMealHandler = () => {
+    navigation.navigate('MealDetail', {
+      mealId: id
+    })
+  }
+
   return (
     <View style={styles.container}>
-      <Card>
+      <Card onPress={detailMealHandler}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
         <View style={styles.infor}>
           <Text style={styles.title}>{title}</Text>
-          <View style={styles.details}>
-            <Text style={styles.text}>{duration}m</Text>
-            <Text style={styles.text}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.text}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetails
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Card>
     </View>
@@ -47,15 +62,5 @@ const styles = StyleSheet.create({
   },
   infor: {
     padding: 16
-  },
-
-  details: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 20
-  },
-  text: {
-    fontSize: 12,
-    marginHorizontal: 4
   }
 })

@@ -6,13 +6,14 @@ import { NavigationContainer } from '@react-navigation/native'
 import CategoriesScreen from './src/screens/CategoriesScreen'
 import MealsOverviewScreen from './src/screens/MealsOverviewScreen'
 import { RootStackParamList } from './src/constants/type'
+import MealDetailScreen from './src/screens/MealDetailScreen'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Categories"
@@ -30,6 +31,7 @@ export default function App() {
             options={{ title: 'All Categories' }}
           />
           <Stack.Screen name="Meals" component={MealsOverviewScreen} />
+          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
