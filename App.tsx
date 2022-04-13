@@ -7,6 +7,7 @@ import CategoriesScreen from './src/screens/CategoriesScreen'
 import MealsOverviewScreen from './src/screens/MealsOverviewScreen'
 import { RootStackParamList } from './src/constants/type'
 import MealDetailScreen from './src/screens/MealDetailScreen'
+import { Color } from './src/constants/colors'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -19,9 +20,9 @@ export default function App() {
           initialRouteName="Categories"
           screenOptions={{
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#47211a' },
+            headerStyle: { backgroundColor: Color.primary_300 },
             contentStyle: {
-              backgroundColor: '#70392e'
+              backgroundColor: Color.primary_200
             }
           }}
         >

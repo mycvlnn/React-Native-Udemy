@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   details: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20
+    marginTop: 10
   },
   text: {
     fontSize: 12,
