@@ -1,15 +1,24 @@
-import React from 'react'
-import { Image, Text, View, StyleSheet, ScrollView, SafeAreaView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView
+} from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../constants/type'
 import { MEALS } from '../data/meals'
 import MealDetails from '../components/MealDetails'
 import SubTitle from '../components/MealDetail/SubTitle'
 import ListItem from '../components/MealDetail/ListItem'
+import Icon from '../components/Icon/Icon'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>
 
-const MealDetailScreen: React.FC<Props> = ({ route }) => {
+const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
+  const [isFavorite, setIsFavorite] = useState(false)
   const mealId = route.params.mealId
   const selectedMeal = MEALS.find((meal) => meal.id === mealId)
 
@@ -31,9 +40,28 @@ const MealDetailScreen: React.FC<Props> = ({ route }) => {
     ingredients
   } = selectedMeal
 
+  const handleFavorite = () => {
+    setIsFavorite((prevFavorite) => !prevFavorite)
+  }
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Icon
+            name={isFavorite ? 'heart' : 'heart-outline'}
+            size={40}
+            color="white"
+            onPress={handleFavorite}
+          />
+        )
+      }
+    })
+  }, [handleFavorite, isFavorite])
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView >
+      <ScrollView>
         <Image source={{ uri: imageUrl }} style={styles.image} />
         <Text style={styles.title}>{title}</Text>
         <MealDetails
@@ -44,9 +72,9 @@ const MealDetailScreen: React.FC<Props> = ({ route }) => {
         />
         <View style={styles.info}>
           <View style={styles.innerContainer}>
-            <SubTitle title='ingredients' />
+            <SubTitle title="ingredients" />
             <ListItem data={ingredients} />
-            <SubTitle title='Steps' />
+            <SubTitle title="Steps" />
             <ListItem data={steps} />
           </View>
         </View>
@@ -57,13 +85,12 @@ const MealDetailScreen: React.FC<Props> = ({ route }) => {
 
 export default MealDetailScreen
 const styles = StyleSheet.create({
-
   container: {
-    flex: 1,
+    flex: 1
   },
   innerContainer: {
     alignItems: 'center',
-    width: '80%',
+    width: '80%'
   },
   image: {
     width: '100%',
@@ -79,7 +106,6 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: 'white',
-  },
-
+    color: 'white'
+  }
 })
