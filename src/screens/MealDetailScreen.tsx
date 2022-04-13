@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Text, View, StyleSheet } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../constants/type'
 import { MEALS } from '../data/meals'
@@ -44,6 +44,7 @@ const MealDetailScreen: React.FC<Props> = ({ route }) => {
       <Image source={{ uri: imageUrl }} />
       <Text>{title}</Text>
       <MealDetails
+        style={styles.text}
         duration={duration}
         complexity={complexity}
         affordability={affordability}
@@ -58,3 +59,8 @@ const MealDetailScreen: React.FC<Props> = ({ route }) => {
 }
 
 export default MealDetailScreen
+const styles = StyleSheet.create({
+  text: {
+    color: 'white'
+  }
+})

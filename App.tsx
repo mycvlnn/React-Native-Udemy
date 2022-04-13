@@ -19,9 +19,9 @@ export default function App() {
           initialRouteName="Categories"
           screenOptions={{
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#a13e37' },
+            headerStyle: { backgroundColor: '#47211a' },
             contentStyle: {
-              backgroundColor: '#402721'
+              backgroundColor: '#70392e'
             }
           }}
         >
