@@ -3,26 +3,26 @@ import { View, Text, Button, StyleSheet } from 'react-native'
 import { useDrawerStatus } from '@react-navigation/drawer'
 
 const HomeScreen = ({ navigation }) => {
-  const isDrawerOpen = useDrawerStatus() === 'open'
+  // const isDrawerOpen = useDrawerStatus() === 'open'
 
-  const toggleDrawerHandler = () => {
-    navigation.toggleDrawer()
-  }
+  // const toggleDrawerHandler = () => {
+  //   navigation.toggleDrawer()
+  // }
 
-  const openDrawer = () => {
-    navigation.openDrawer()
-  }
-  const closeDrawer = () => {
-    navigation.closeDrawer()
-  }
+  // const openDrawer = () => {
+  //   navigation.openDrawer()
+  // }
+  // const closeDrawer = () => {
+  //   navigation.closeDrawer()
+  // }
 
   return (
     <View>
       <Text style={styles.textDrawer}>Home Screen</Text>
-      <Text style={styles.textDrawer}>{isDrawerOpen ? 'True' : 'false'}</Text>
-      <Button onPress={toggleDrawerHandler} title="Toggle Drawer" />
+      {/* <Text style={styles.textDrawer}>{isDrawerOpen ? 'True' : 'false'}</Text> */}
+      {/* <Button onPress={toggleDrawerHandler} title="Toggle Drawer" />
       <Button onPress={closeDrawer} title="Close Drawer" />
-      <Button onPress={openDrawer} title="Open Drawer" />
+      <Button onPress={openDrawer} title="Open Drawer" /> */}
     </View>
   )
 }

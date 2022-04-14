@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View } from 'react-native'
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import UserScreen from './screens/UserScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
 import { NavigationContainer } from '@react-navigation/native'
@@ -8,66 +9,58 @@ import HomeScreen from './screens/HomeScreen'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
 const Drawer = createDrawerNavigator()
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator
+      <Tab.Navigator
         initialRouteName="HomeScreen"
         screenOptions={{
-          drawerLabel: 'Welcome',
-          drawerIcon: () => <Ionicons name="person" size={20} color="red" />,
-          drawerActiveBackgroundColor: 'orange',
-          headerShown: true,
-          title: 'Hahaha',
-          headerStyle: { backgroundColor: '#11bd28' },
+          headerStyle: {
+            backgroundColor: '#3dc431'
+          },
           headerTintColor: 'white',
-          headerRight: () => (
-            <Pressable onPress={() => alert('1')}>
-              <Ionicons
-                style={{ marginRight: 20 }}
-                name="person"
-                size={20}
-                color="white"
-              />
-            </Pressable>
-          ),
-          drawerLabelStyle: { color: 'black' },
-          drawerActiveTintColor: '#345'
+          tabBarActiveTintColor: '#3dc431',
+          tabBarActiveBackgroundColor: '#111',
+          tabBarIconStyle: { fontSize: 30 },
+          tabBarShowLabel: false
         }}
       >
-        <Drawer.Screen
+        <Tab.Screen
           name="UserScreen"
           component={UserScreen}
-          options={{ drawerLabel: 'Profile' }}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons size={size} name="person" color={color} />
+            ),
+            headerTitle: 'User Profile'
+          }}
         />
-        <Drawer.Screen
+        <Tab.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
           options={{
-            drawerLabel: 'Welcome',
-            drawerIcon: () => <Ionicons name="person" size={20} color="red" />,
-            drawerActiveBackgroundColor: 'orange',
-            headerShown: true,
-            title: 'Hahaha',
-            headerStyle: { backgroundColor: '#11bd28' },
-            headerTintColor: 'white',
-            headerRight: () => (
-              <Pressable onPress={() => alert('1')}>
-                <Ionicons
-                  style={{ marginRight: 20 }}
-                  name="person"
-                  size={20}
-                  color="white"
-                />
-              </Pressable>
+            tabBarLabel: 'Welcome',
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons size={30} name="happy" color={color} />
             ),
-            drawerLabelStyle: { color: 'black' },
-            drawerActiveTintColor: '#345'
+            headerTitle: 'Welcome'
           }}
         />
-        <Drawer.Screen name="HomeScreen" component={HomeScreen} />
-      </Drawer.Navigator>
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ size, color }) => (
+              <Ionicons size={30} name="home" color={color} />
+            ),
+            headerTitle: 'Home'
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }
