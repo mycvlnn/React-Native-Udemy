@@ -21,8 +21,8 @@ const MealsOverviewScreen: React.FC<Props> = ({ route, navigation }) => {
   }, [])
 
   const renderMealsList = () => {
-    const mealsList = MEALS.filter((meal) =>
-      meal.categoryIds.includes(params.categoryId)
+    const mealsList = MEALS.filter(
+      (meal) => meal.categoryIds.includes(params?.categoryId) || []
     )
 
     return (

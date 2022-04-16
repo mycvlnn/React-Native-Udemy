@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 350
   },
-  info: { flex: 1, alignItems: 'center' },
+  info: { flex: 1, alignItems: 'center', marginBottom: 20 },
   title: {
     fontSize: 24,
     fontWeight: 'bold',

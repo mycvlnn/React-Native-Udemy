@@ -2,6 +2,7 @@
 
 //Define an object type with mappings for route name to the params of the route.
 export type RootStackParamList = {
+  DrawerScreen: undefined
   Categories: undefined
   Meals: {
     categoryId: string
@@ -9,4 +10,5 @@ export type RootStackParamList = {
   MealDetail: {
     mealId: string
   }
+  Favorite: undefined
 }
