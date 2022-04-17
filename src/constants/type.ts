@@ -4,6 +4,7 @@
 export type RootStackParamList = {
   DrawerScreen: undefined
   Categories: undefined
+  TabBottomSreen: undefined
   Meals: {
     categoryId: string
   }
@@ -11,4 +12,5 @@ export type RootStackParamList = {
     mealId: string
   }
   Favorite: undefined
+  Profile: undefined
 }

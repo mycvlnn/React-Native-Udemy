@@ -1,46 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { createDrawerNavigator, DrawerContent } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
 
-import CategoriesScreen from './src/screens/CategoriesScreen'
 import MealsOverviewScreen from './src/screens/MealsOverviewScreen'
 import { RootStackParamList } from './src/constants/type'
 import MealDetailScreen from './src/screens/MealDetailScreen'
 import { Color } from './src/constants/colors'
-import FavoriteScreen from './src/screens/FavoriteScreen'
+import React from 'react'
+import DrawerNavigator from './src/navigation/DrawerNavigator'
+import TabBottomNavigator from './src/navigation/TabBottom'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
-const Drawer = createDrawerNavigator<RootStackParamList>()
-const DrawerNavigator = () => {
-  return (
-    <Drawer.Navigator
-      initialRouteName="DrawerScreen"
-      screenOptions={{
-        headerTintColor: 'white',
-        headerStyle: { backgroundColor: Color.primary_300 },
-        sceneContainerStyle: { backgroundColor: Color.primary_200 }
-      }}
-    >
-      <Drawer.Screen
-        name="DrawerScreen"
-        component={CategoriesScreen}
-        options={{
-          title: 'All Categories',
-
-          // drawerItemStyle: { display: 'none' },
-          drawerLabel: () => (
-            <View>
-              <Text>Head</Text>
-            </View>
-          )
-        }}
-      />
-      <Drawer.Screen name="Favorite" component={FavoriteScreen} />
-    </Drawer.Navigator>
-  )
-}
 
 export default function App() {
   return (
@@ -57,10 +28,17 @@ export default function App() {
             }
           }}
         >
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Categories"
             component={DrawerNavigator}
             options={{ headerShown: false }}
+          /> */}
+          <Stack.Screen
+            name="TabBottomSreen"
+            component={TabBottomNavigator}
+            options={{
+              headerShown: false
+            }}
           />
           <Stack.Screen name="Meals" component={MealsOverviewScreen} />
           <Stack.Screen name="MealDetail" component={MealDetailScreen} />
