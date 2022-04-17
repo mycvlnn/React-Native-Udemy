@@ -43,7 +43,9 @@ export const MEALS = [
     false,
     true,
     true,
-    true
+    true,
+    16,
+    '80 Duy Tân, Cầu Giấy, Hà Nội'
   ),
 
   new Meal(
@@ -69,7 +71,9 @@ export const MEALS = [
     false,
     false,
     false,
-    false
+    false,
+    18,
+    '180 Lĩnh Nam, Hoàng Mai, Hà Nội'
   ),
 
   new Meal(
@@ -98,7 +102,9 @@ export const MEALS = [
     false,
     false,
     false,
-    true
+    true,
+    20,
+    'Quận 10, Hồ Chí Minh'
   ),
 
   new Meal(
@@ -131,7 +137,9 @@ export const MEALS = [
     false,
     false,
     false,
-    false
+    false,
+    30,
+    'Quận 8 Hồ Chí Minh'
   ),
 
   new Meal(
@@ -163,7 +171,9 @@ export const MEALS = [
     true,
     false,
     true,
-    true
+    true,
+    50,
+    'Tây Hồ, Ba Đình'
   ),
 
   new Meal(
@@ -196,7 +206,9 @@ export const MEALS = [
     true,
     false,
     true,
-    false
+    false,
+    100,
+    'Nam Dư, Lĩnh Nam, Hoàng Mai, Hà Nội'
   ),
 
   new Meal(
@@ -225,7 +237,9 @@ export const MEALS = [
     true,
     false,
     true,
-    false
+    false,
+    200,
+    'Long Biên, Hà Nội'
   ),
 
   new Meal(
@@ -256,7 +270,9 @@ export const MEALS = [
     true,
     false,
     false,
-    true
+    true,
+    10,
+    'Đại La, Hà Nội'
   ),
 
   new Meal(
@@ -303,7 +319,9 @@ export const MEALS = [
     true,
     false,
     true,
-    false
+    false,
+    20,
+    'Đườn Trần Duy Hương, Hà Nội'
   ),
   new Meal(
     'm10',
@@ -332,6 +350,8 @@ export const MEALS = [
     true,
     true,
     true,
-    true
+    true,
+    100,
+    '888 Trường Cao Đẳng Công Thương Hà Nội.'
   )
 ]

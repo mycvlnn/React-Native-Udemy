@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   Image,
   Text,
@@ -16,11 +16,12 @@ import SubTitle from '../../components/MealDetail/SubTitle'
 import ListItem from '../../components/MealDetail/ListItem'
 import Icon from '../../components/Icon/Icon'
 import { Color } from '../../constants/colors'
+import useStore from '../../hooks/use-store'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>
 
 const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
-  const [isFavorite, setIsFavorite] = useState(false)
+  const { ids, toggleFavorite } = useStore()
   const mealId = route.params.mealId
   const selectedMeal = MEALS.find((meal) => meal.id === mealId)
 
@@ -43,7 +44,7 @@ const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
   } = selectedMeal
 
   const handleFavorite = () => {
-    setIsFavorite((prevFavorite) => !prevFavorite)
+    toggleFavorite(mealId)
   }
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
         return (
           <Pressable onPress={handleFavorite}>
             <Icon
-              name={isFavorite ? 'heart' : 'heart-outline'}
+              name={ids.includes(mealId) ? 'heart' : 'heart-outline'}
               size={40}
               color="white"
             />
@@ -60,7 +61,7 @@ const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
         )
       }
     })
-  }, [handleFavorite, isFavorite])
+  })
 
   return (
     <SafeAreaView style={styles.container}>
