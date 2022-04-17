@@ -1,15 +1,16 @@
+import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
+import { Provider } from 'react-redux'
+import { store } from './src/store/redux/store'
 
 import MealsOverviewScreen from './src/screens/Meals/MealsOverviewScreen'
 import { RootStackParamList } from './src/constants/type'
 import MealDetailScreen from './src/screens/Meals/MealDetailScreen'
 import { Color } from './src/constants/colors'
-import React from 'react'
 import TabBottomNavigator from './src/navigation/TabBottomNavigator'
-import FavoriteProvider from './src/store/context/FavoriteContext'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -17,7 +18,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <FavoriteProvider>
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="Categories"
@@ -46,7 +47,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoriteProvider>
+      </Provider>
     </>
   )
 }

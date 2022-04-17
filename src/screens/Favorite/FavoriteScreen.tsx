@@ -1,26 +1,29 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { Color } from '../../constants/colors'
 import { RootStackParamList } from '../../constants/type'
 import { MEALS } from '../../data/meals'
-import useStore from '../../hooks/use-store'
+import { useAppSelector } from '../../hooks/use-store'
 import FavoriteEmpty from './components/FavoriteEmpty'
 import FavoriteItem from './components/FavoriteItem'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Favorite'>
 
 const FavoriteScreen: React.FC<Props> = ({ navigation }) => {
-  const { ids } = useStore()
+  const idsFavorite = useAppSelector((state) => state.favorite.ids)
+
   const navigateDetailFavorite = (id: string) => {
     navigation.navigate('MealDetail', {
       mealId: id
     })
   }
 
-  const mealsList = MEALS.filter((meal) => ids.includes(meal.id))
+  const mealsListFavorite = MEALS.filter((meal) =>
+    idsFavorite.includes(meal.id)
+  )
 
-  if (mealsList.length === 0) {
+  if (mealsListFavorite.length === 0) {
     return <FavoriteEmpty />
   }
 
@@ -30,7 +33,7 @@ const FavoriteScreen: React.FC<Props> = ({ navigation }) => {
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.favoriteContainer}
-        data={mealsList}
+        data={mealsListFavorite}
         renderItem={({ item }) => {
           const values = {
             name: item.title,
