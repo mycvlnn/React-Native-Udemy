@@ -1,10 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView
+} from 'react-native'
 import Icon from '../../components/Icon/Icon'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../constants/type'
+import MenuList from './Components/MenuList'
+import { PROFILE } from '../../data/profile'
 
 const Profile = () => {
   const navigation =
@@ -13,13 +22,13 @@ const Profile = () => {
   return (
     <LinearGradient
       colors={['#FFC285', '#F1F5F8', '#FFFFFF']}
-      style={{ flex: 1, padding: 30 }}
+      style={styles.rootContainer}
       locations={[0, 0.7, 0.95]}
     >
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Pressable
           onPress={() => navigation.navigate('Categories')}
-          style={{ alignItems: 'flex-end' }}
+          style={styles.btnClose}
         >
           <Icon name="close" size={36} color="black" />
         </Pressable>
@@ -30,18 +39,25 @@ const Profile = () => {
           />
           <Text style={styles.name}>Taiki Mori</Text>
         </View>
-      </View>
+        <MenuList data={PROFILE.system} />
+        <MenuList data={PROFILE.personal} />
+        <MenuList data={PROFILE.setting} />
+      </ScrollView>
     </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  avatar: {
-    borderRadius: 197,
-    width: 200,
-    height: 200
+  rootContainer: {
+    flex: 1
   },
+  container: { flex: 1, paddingHorizontal: 30 },
+  avatar: {
+    borderRadius: 140,
+    width: 140,
+    height: 140
+  },
+  btnClose: { alignItems: 'flex-end', marginTop: 10 },
   infor: {
     paddingBottom: 8,
     borderBottomWidth: 1,
