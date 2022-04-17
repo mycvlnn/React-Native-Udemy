@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import Icon from '../../components/Icon/Icon'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useNavigation } from '@react-navigation/native'
@@ -17,14 +17,12 @@ const Profile = () => {
       locations={[0, 0.7, 0.95]}
     >
       <View style={styles.container}>
-        <View style={{ alignItems: 'flex-end' }}>
-          <Icon
-            onPress={() => navigation.goBack()}
-            name="close"
-            size={36}
-            color="black"
-          />
-        </View>
+        <Pressable
+          onPress={() => navigation.navigate('Categories')}
+          style={{ alignItems: 'flex-end' }}
+        >
+          <Icon name="close" size={36} color="black" />
+        </Pressable>
         <View style={styles.infor}>
           <Image
             style={styles.avatar}

@@ -3,13 +3,12 @@ import { StyleSheet } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 
-import MealsOverviewScreen from './src/screens/MealsOverviewScreen'
+import MealsOverviewScreen from './src/screens/Meals/MealsOverviewScreen'
 import { RootStackParamList } from './src/constants/type'
-import MealDetailScreen from './src/screens/MealDetailScreen'
+import MealDetailScreen from './src/screens/Meals/MealDetailScreen'
 import { Color } from './src/constants/colors'
 import React from 'react'
-import DrawerNavigator from './src/navigation/DrawerNavigator'
-import TabBottomNavigator from './src/navigation/TabBottom'
+import TabBottomNavigator from './src/navigation/TabBottomNavigator'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -22,10 +21,7 @@ export default function App() {
           initialRouteName="Categories"
           screenOptions={{
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: Color.primary_300 },
-            contentStyle: {
-              backgroundColor: Color.primary_200
-            }
+            headerStyle: { backgroundColor: Color.primary_300 }
           }}
         >
           {/* <Stack.Screen
@@ -41,7 +37,11 @@ export default function App() {
             }}
           />
           <Stack.Screen name="Meals" component={MealsOverviewScreen} />
-          <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+            options={{ title: 'About the meal' }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

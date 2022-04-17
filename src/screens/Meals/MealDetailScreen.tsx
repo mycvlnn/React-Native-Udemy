@@ -5,15 +5,17 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  Pressable
 } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../constants/type'
-import { MEALS } from '../data/meals'
-import MealDetails from '../components/MealDetails'
-import SubTitle from '../components/MealDetail/SubTitle'
-import ListItem from '../components/MealDetail/ListItem'
-import Icon from '../components/Icon/Icon'
+import { RootStackParamList } from '../../constants/type'
+import { MEALS } from '../../data/meals'
+import MealDetails from '../../components/MealDetails'
+import SubTitle from '../../components/MealDetail/SubTitle'
+import ListItem from '../../components/MealDetail/ListItem'
+import Icon from '../../components/Icon/Icon'
+import { Color } from '../../constants/colors'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MealDetail'>
 
@@ -48,12 +50,13 @@ const MealDetailScreen: React.FC<Props> = ({ route, navigation }) => {
     navigation.setOptions({
       headerRight: () => {
         return (
-          <Icon
-            name={isFavorite ? 'heart' : 'heart-outline'}
-            size={40}
-            color="white"
-            onPress={handleFavorite}
-          />
+          <Pressable onPress={handleFavorite}>
+            <Icon
+              name={isFavorite ? 'heart' : 'heart-outline'}
+              size={40}
+              color="white"
+            />
+          </Pressable>
         )
       }
     })
@@ -101,11 +104,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'white',
-    marginTop: 16
+    color: Color.primary_200,
+    marginTop: 16,
+    paddingHorizontal: 20
   },
 
   text: {
-    color: 'white'
+    color: Color.primary_200
   }
 })

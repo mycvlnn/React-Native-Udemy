@@ -1,9 +1,9 @@
 import React, { useLayoutEffect } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../constants/type'
-import { CATEGORIES, MEALS } from '../data/meals'
-import MealItem from '../components/MealItem'
+import { RootStackParamList } from '../../constants/type'
+import { CATEGORIES, MEALS } from '../../data/meals'
+import MealItem from '../../components/MealItem'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Meals'>
 

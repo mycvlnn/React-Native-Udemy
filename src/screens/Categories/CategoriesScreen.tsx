@@ -2,10 +2,10 @@ import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import CategoryGridTile from '../components/CategoryGridTile'
-import { CATEGORIES } from '../data/meals'
-import { RootStackParamList } from '../constants/type'
-import { Color } from '../constants/colors'
+import CategoryGridTile from '../../components/CategoryGridTile'
+import { CATEGORIES } from '../../data/meals'
+import { RootStackParamList } from '../../constants/type'
+import { Color } from '../../constants/colors'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Categories'>
 
@@ -36,7 +36,6 @@ export default CategoriesScreen
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.primary_200,
     flex: 1
   }
 })

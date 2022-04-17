@@ -2,9 +2,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer'
 import Icon from '../components/Icon/Icon'
 import { Color } from '../constants/colors'
 import { RootStackParamList } from '../constants/type'
-import CategoriesScreen from '../screens/CategoriesScreen'
-import FavoriteScreen from '../screens/FavoriteScreen'
-import Profile from '../screens/Profile/Profile'
+import CategoriesScreen from '../screens/Categories/CategoriesScreen'
+import FavoriteScreen from '../screens/Favorite/FavoriteScreen'
+import Profile from '../screens/Profile/ProfileScreen'
 
 const Drawer = createDrawerNavigator<RootStackParamList>()
 
