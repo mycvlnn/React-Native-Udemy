@@ -23,7 +23,7 @@ const ExpensesList: React.FC<IProps> = ({ expenses }) => {
     <FlatList
       data={expenses}
       renderItem={renderExpenseItem}
-      keyExtractor={(item) => item!.id}
+      keyExtractor={(item) => item.id!.toString()}
       ListEmptyComponent={renderListEmptyData}
     />
   )

@@ -3,7 +3,8 @@ import { Expense } from '../models'
 export enum ExpenseActionKind {
   ADD_EXPENSE = 'ADD_EXPENSE',
   UPDATE_EXPENSE = 'UPDATE_EXPENSE',
-  REMOVE_EXPENSE = 'REMOVE_EXPENSE'
+  REMOVE_EXPENSE = 'REMOVE_EXPENSE',
+  SET_EXPENSES = 'SET_EXPENSES'
 }
 
 export type AddExpense = {
@@ -21,4 +22,13 @@ export type DeleteExpense = {
   payload: string
 }
 
-export type ExpenseAction = AddExpense | UpdateExpense | DeleteExpense
+export type SetExpenses = {
+  type: ExpenseActionKind.SET_EXPENSES
+  payload: Expense[]
+}
+
+export type ExpenseAction =
+  | AddExpense
+  | UpdateExpense
+  | DeleteExpense
+  | SetExpenses

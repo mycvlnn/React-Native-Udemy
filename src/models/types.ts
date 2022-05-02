@@ -10,8 +10,10 @@ export type RootStackPamramList = {
 }
 
 export interface Expense {
-  id: string
-  description?: string
+  id?: string
+  description: string
   date: Date
   amount: number
 }
+
+export type ExpensesLists = Expense[]

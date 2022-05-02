@@ -1,12 +1,19 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import React from 'react'
+import React, { useState } from 'react'
 import { useLayoutEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import Button from '../../components/UI/Button'
+import { View, StyleSheet } from 'react-native'
+import ExpenseForm from '../../components/ManageExpense/ExpenseForm'
+import ErrorOverlay from '../../components/UI/ErrorOverlay'
 import IconButton from '../../components/UI/IconButton'
+import LoadingOverlay from '../../components/UI/LoadingOverlay'
 import { Colors } from '../../constants/colors'
 import useStore from '../../hooks/useStore'
-import { RootStackPamramList } from '../../models'
+import { Expense, RootStackPamramList } from '../../models'
+import {
+  addExpenseApi,
+  deleteExpenseApi,
+  updateExpenseApi
+} from '../../services/expenses-api'
 
 type ManageExpenseProps = NativeStackScreenProps<
   RootStackPamramList,
@@ -16,10 +23,13 @@ const ManageExpenses: React.FC<ManageExpenseProps> = ({
   route,
   navigation
 }) => {
-  const { addExpense, deleteExpense, updateExpense } = useStore()
+  const { addExpense, deleteExpense, updateExpense, expenses } = useStore()
+  const [isSubmiting, setIsSubmiting] = useState(false)
+  const [error, setError] = useState<string>()
   const idExpense = route.params?.id
-
   const isEdit = !!idExpense
+
+  const defaultExpense = expenses.find((expense) => expense.id === idExpense)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -31,45 +41,63 @@ const ManageExpenses: React.FC<ManageExpenseProps> = ({
     navigation.goBack()
   }
 
-  const confirmHandler = () => {
-    if (isEdit) {
-      updateExpense({
-        id: idExpense,
-        amount: 22.4,
-        date: new Date(Date.now()),
-        description: 'Update every thing'
-      })
+  const confirmHandler = async (expenseData: Expense) => {
+    try {
+      setIsSubmiting(true)
+      if (isEdit) {
+        updateExpense({
+          ...expenseData,
+          id: idExpense
+        })
+        await updateExpenseApi(idExpense, expenseData)
+      } else {
+        const { id } = await addExpenseApi(expenseData)
+
+        addExpense({
+          ...expenseData,
+          id: id
+        })
+      }
       navigation.goBack()
-    } else {
-      addExpense({
-        id: Math.random().toString(),
-        amount: 22.4,
-        date: new Date(Date.now()),
-        description: 'Hello Every body !!'
-      })
-      navigation.goBack()
+    } catch (error) {
+      setError('Could not save Expense. Please try again later. ')
+      setIsSubmiting(false)
     }
   }
 
-  const deleteExpenseHandler = () => {
+  const deleteExpenseHandler = async () => {
     if (!idExpense) {
       alert('Not found expense')
       return
     }
-    deleteExpense(idExpense)
-    navigation.goBack()
+    try {
+      setIsSubmiting(true)
+      deleteExpense(idExpense)
+      await deleteExpenseApi(idExpense)
+      navigation.goBack()
+    } catch (error) {
+      setError('Could not delete Expense. Please try again later')
+      setIsSubmiting(false)
+    }
+  }
+
+  if (error && !isSubmiting) {
+    return <ErrorOverlay message={error} onConfirm={() => setError('')} />
+  }
+
+  if (isSubmiting) {
+    return <LoadingOverlay />
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttons}>
-        <Button mode="flat" style={styles.button} onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEdit ? 'Update' : 'Add'}
-        </Button>
-      </View>
+      <ExpenseForm
+        labelSubmit={isEdit ? 'Update' : 'Add'}
+        onCancel={cancelHandler}
+        onSubmit={confirmHandler}
+        defaultValues={defaultExpense}
+      />
+
       {isEdit && (
         <View style={styles.buttonDelete}>
           <IconButton
@@ -92,16 +120,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary800,
     padding: 20
   },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    marginHorizontal: 8
-  },
+
   buttonDelete: {
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 20,
+    borderTopColor: '#ccc',
+    borderTopWidth: 1
   }
 })

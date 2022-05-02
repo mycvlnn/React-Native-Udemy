@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import { EXPENSES_DATA } from '../data/expenseData'
 import { Expense } from '../models'
 import { ExpenseAction, ExpenseActionKind } from './type'
 
@@ -8,17 +7,23 @@ type ExpenseContextType = {
   addExpense: (expenseData: Expense) => void
   deleteExpense: (idExpense: string) => void
   updateExpense: (expenseData: Expense) => void
+  setExpenses: (expensesList: Expense[]) => void
 }
 
 export const ExpensesContext = createContext<ExpenseContextType>({
   expenses: [],
   addExpense: (expenseData) => {},
   deleteExpense: (idExpense) => {},
-  updateExpense: (expenseData) => {}
+  updateExpense: (expenseData) => {},
+  setExpenses: (expensesList: Expense[]) => {}
 })
 
 const reducer = (state: Expense[], action: ExpenseAction) => {
   switch (action.type) {
+    case ExpenseActionKind.SET_EXPENSES: {
+      return action.payload
+    }
+
     case ExpenseActionKind.ADD_EXPENSE: {
       return [{ ...action.payload }, ...state]
     }
@@ -33,7 +38,6 @@ const reducer = (state: Expense[], action: ExpenseAction) => {
         ...itemExpenseUpdated,
         ...action.payload
       }
-      console.log('expenseUpdated', expensesUpdated)
       return expensesUpdated
     }
     case ExpenseActionKind.REMOVE_EXPENSE: {
@@ -44,7 +48,7 @@ const reducer = (state: Expense[], action: ExpenseAction) => {
   }
 }
 const ExpenseProvider: React.FC = ({ children }) => {
-  const [expenses, dispatch] = useReducer(reducer, EXPENSES_DATA)
+  const [expenses, dispatch] = useReducer(reducer, [])
 
   const addExpenseHandler = (expenseData: Expense) => {
     dispatch({
@@ -61,10 +65,16 @@ const ExpenseProvider: React.FC = ({ children }) => {
   }
 
   const deleteExpenseHandler = (id: string) => {
-    console.log('test')
     dispatch({
       type: ExpenseActionKind.REMOVE_EXPENSE,
       payload: id
+    })
+  }
+
+  const setExpensesList = (expensesData: Expense[]) => {
+    dispatch({
+      type: ExpenseActionKind.SET_EXPENSES,
+      payload: expensesData
     })
   }
 
@@ -72,7 +82,8 @@ const ExpenseProvider: React.FC = ({ children }) => {
     expenses,
     addExpense: addExpenseHandler,
     updateExpense: updateExpenseHandler,
-    deleteExpense: deleteExpenseHandler
+    deleteExpense: deleteExpenseHandler,
+    setExpenses: setExpensesList
   }
 
   return (
