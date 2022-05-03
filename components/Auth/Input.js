@@ -1,6 +1,6 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 
-import { Colors } from '../../constants/styles';
+import { Colors } from '../../constants/styles'
 
 function Input({
   label,
@@ -8,7 +8,7 @@ function Input({
   secure,
   onUpdateValue,
   value,
-  isInvalid,
+  isInvalid
 }) {
   return (
     <View style={styles.inputContainer}>
@@ -17,7 +17,7 @@ function Input({
       </Text>
       <TextInput
         style={[styles.input, isInvalid && styles.inputInvalid]}
-        autoCapitalize={false}
+        autoComplete="off"
         autoCapitalize="none"
         keyboardType={keyboardType}
         secureTextEntry={secure}
@@ -25,30 +25,30 @@ function Input({
         value={value}
       />
     </View>
-  );
+  )
 }
 
-export default Input;
+export default Input
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginVertical: 8,
+    marginVertical: 8
   },
   label: {
     color: 'white',
-    marginBottom: 4,
+    marginBottom: 4
   },
   labelInvalid: {
-    color: Colors.error500,
+    color: Colors.error500
   },
   input: {
     paddingVertical: 8,
     paddingHorizontal: 6,
     backgroundColor: Colors.primary100,
     borderRadius: 4,
-    fontSize: 16,
+    fontSize: 16
   },
   inputInvalid: {
-    backgroundColor: Colors.error100,
-  },
-});
+    backgroundColor: Colors.error100
+  }
+})
